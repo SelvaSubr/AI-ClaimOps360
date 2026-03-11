@@ -1,0 +1,27 @@
+[flake8]
+max-line-length = 100
+extend-ignore =
+    E203, E501,
+    W503, W504,
+    D100, D101, D102, D103, D104, D105, D107,
+    D200, D202, D203, D204, D205, D208, D209,
+    D300, D301, D302,
+    D400, D401, D402, D403, D404
+
+per-file-ignores =
+    */tests/*.py: D,F401,F811
+    tests/**/*.py: D,F401
+    conftest.py: D
+    */__init__.py: D104
+    scripts/*.py: D
+
+exclude =
+    .venv,
+    .git,
+    __pycache__,
+    dbt/target,
+    dbt/dbt_packages,
+    .terraform,
+    htmlcov,
+    mlruns,
+    src/ai_validation/models

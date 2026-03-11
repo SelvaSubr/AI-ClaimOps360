@@ -1,0 +1,90 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1300' height='740' viewBox='0 0 1300 740'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#0D1117'/><stop offset='100%' stop-color='#161B22'/></linearGradient>
+    <linearGradient id='hdr' x1='0' y1='0' x2='1' y2='0'><stop offset='0%' stop-color='#1A56DB'/><stop offset='100%' stop-color='#0E9F6E'/></linearGradient>
+  </defs>
+  <rect width='1300' height='740' fill='url(#bg)'/>
+  <rect x='0' y='0' width='1300' height='72' fill='url(#hdr)' opacity='0.95'/>
+  <text x='650' y='40' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='white'>Architecture Decision Records — ADR-001 through ADR-007</text>
+  <text x='650' y='62' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='rgba(255,255,255,0.78)'>7 decisions · all Accepted · documented in docs/adr/</text>
+
+  <!-- Column header row y=76 h=36 -->
+  <rect x='18' y='76' width='1264' height='36' rx='4' fill='#161B22'/>
+  <text x='32' y='99' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>ADR</text>
+  <text x='160' y='99' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>DECISION</text>
+  <text x='500' y='99' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>ALTERNATIVES REJECTED</text>
+  <text x='840' y='99' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>RATIONALE</text>
+
+  <!-- 7 rows h=74 gap=6 start y=118 -->
+  <!-- ADR-001 y=118 -->
+  <rect x='18' y='118' width='1264' height='74' rx='4' fill='#0D1117' stroke='#21262D' stroke-width='0.5'/>
+  <rect x='18' y='118' width='8' height='74' rx='3' fill='#1A56DB'/>
+  <text x='34' y='150' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#58A6FF'>ADR-001</text>
+  <text x='160' y='140' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#E6EDF3'>Medallion Architecture</text>
+  <text x='160' y='162' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>Bronze/Silver/Gold · Delta Lake 3.0</text>
+  <text x='500' y='151' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#6A737D' font-style='italic'>Lambda arch · single-layer · Kappa (Phase 2)</text>
+  <text x='840' y='140' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Bronze=replay safety · Silver=idempotent MERGE</text>
+  <text x='840' y='162' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Gold=always derivable · never written to directly</text>
+
+  <!-- ADR-002 y=198 -->
+  <rect x='18' y='198' width='1264' height='74' rx='4' fill='#111520' stroke='#21262D' stroke-width='0.5'/>
+  <rect x='18' y='198' width='8' height='74' rx='3' fill='#3B82F6'/>
+  <text x='34' y='230' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#93C5FD'>ADR-002</text>
+  <text x='160' y='220' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#E6EDF3'>Kafka for Decoupling</text>
+  <text x='160' y='242' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>5 topics · 4 consumer groups · Event Hubs</text>
+  <text x='500' y='231' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#6A737D' font-style='italic'>Direct Delta writes · Service Bus · Event Grid</text>
+  <text x='840' y='220' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>7-day replay · independent offsets per consumer</text>
+  <text x='840' y='242' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>claims-bronze · claims-payer · remittance · archive</text>
+
+  <!-- ADR-003 y=278 -->
+  <rect x='18' y='278' width='1264' height='74' rx='4' fill='#0D1117' stroke='#21262D' stroke-width='0.5'/>
+  <rect x='18' y='278' width='8' height='74' rx='3' fill='#0E9F6E'/>
+  <text x='34' y='310' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#6EE7B7'>ADR-003</text>
+  <text x='160' y='300' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#E6EDF3'>sklearn V1 Baseline Model</text>
+  <text x='160' y='322' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>RandomForest · AUC 0.8149 cross-val → Staging</text>
+  <text x='500' y='311' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#6A737D' font-style='italic'>Start with LightGBM · LR (no TreeExplainer)</text>
+  <text x='840' y='300' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>V1 proves CMS compliance · V2 proves MLOps</text>
+  <text x='840' y='322' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Model-agnostic: same SHAP + Silver schema</text>
+
+  <!-- ADR-004 y=358 -->
+  <rect x='18' y='358' width='1264' height='74' rx='4' fill='#111520' stroke='#21262D' stroke-width='0.5'/>
+  <rect x='18' y='358' width='8' height='74' rx='3' fill='#D97706'/>
+  <text x='34' y='390' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#FCD34D'>ADR-004</text>
+  <text x='160' y='380' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#E6EDF3'>Snowflake Cortex LLM</text>
+  <text x='160' y='402' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>COMPLETE(llama3.1-70b) in dbt SQL</text>
+  <text x='500' y='391' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#6A737D' font-style='italic'>OpenAI API · Azure OpenAI · local Ollama</text>
+  <text x='840' y='380' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>PHI never leaves Snowflake · no BAA required</text>
+  <text x='840' y='402' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>No API keys · no data transfer agreements</text>
+
+  <!-- ADR-005 y=438 -->
+  <rect x='18' y='438' width='1264' height='74' rx='4' fill='#0D1117' stroke='#21262D' stroke-width='0.5'/>
+  <rect x='18' y='438' width='8' height='74' rx='3' fill='#7C3AED'/>
+  <text x='34' y='470' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#C4B5FD'>ADR-005</text>
+  <text x='160' y='460' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#E6EDF3'>SHAP TreeExplainer</text>
+  <text x='160' y='482' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>Exact Shapley values · 7 CMS fields/claim</text>
+  <text x='500' y='471' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#6A737D' font-style='italic'>LIME (non-deterministic) · global importance</text>
+  <text x='840' y='460' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>EXACT values · deterministic per-decision</text>
+  <text x='840' y='482' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Legally defensible for CMS audit trail</text>
+
+  <!-- ADR-006 y=518 -->
+  <rect x='18' y='518' width='1264' height='74' rx='4' fill='#111520' stroke='#21262D' stroke-width='0.5'/>
+  <rect x='18' y='518' width='8' height='74' rx='3' fill='#1A56DB'/>
+  <text x='34' y='550' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#58A6FF'>ADR-006</text>
+  <text x='160' y='540' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#E6EDF3'>Databricks + Snowflake Hybrid</text>
+  <text x='160' y='562' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>Right tool per workload · dual dbt targets</text>
+  <text x='500' y='551' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#6A737D' font-style='italic'>Pure Databricks · Pure Snowflake · Synapse</text>
+  <text x='840' y='540' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Databricks=Spark/Delta/MLflow</text>
+  <text x='840' y='562' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Snowflake=SQL/Cortex/BI · COPY INTO ADLS Gen2</text>
+
+  <!-- ADR-007 y=598 -->
+  <rect x='18' y='598' width='1264' height='74' rx='4' fill='#0D1117' stroke='#21262D' stroke-width='0.5'/>
+  <rect x='18' y='598' width='8' height='74' rx='3' fill='#0E9F6E'/>
+  <text x='34' y='630' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#6EE7B7'>ADR-007</text>
+  <text x='160' y='620' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#E6EDF3'>LightGBM for V2</text>
+  <text x='160' y='642' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>AUC 0.8091 held-out → Production</text>
+  <text x='500' y='631' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#6A737D' font-style='italic'>XGBoost · CatBoost · Neural net (no TreeExplainer)</text>
+  <text x='840' y='620' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Leaf-wise growth · richer MLflow autolog</text>
+  <text x='840' y='642' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Portable JSON · same SHAP interface · same Silver</text>
+  <text x='650' y='700' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>All 7 decisions documented in docs/adr/</text>
+  <text x='650' y='728' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#FCD34D'>github.com/SelvaSubr/AI-ClaimOps360</text>
+</svg>

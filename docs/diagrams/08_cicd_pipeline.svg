@@ -1,0 +1,127 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='660' viewBox='0 0 1400 660'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#0D1117'/><stop offset='100%' stop-color='#161B22'/></linearGradient>
+    <linearGradient id='hdr' x1='0' y1='0' x2='1' y2='0'><stop offset='0%' stop-color='#1A56DB'/><stop offset='100%' stop-color='#0E9F6E'/></linearGradient>
+  </defs>
+  <rect width='1400' height='660' fill='url(#bg)'/>
+  <rect x='0' y='0' width='1400' height='72' fill='url(#hdr)' opacity='0.95'/>
+  <text x='700' y='40' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='white'>Azure DevOps CI/CD — 7-Stage Pipeline</text>
+  <text x='700' y='62' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='rgba(255,255,255,0.78)'>Triggers on push + PR to main and dev · DENIAL_MODEL_VERSION=v2</text>
+
+  <!-- 7 stage boxes w=175 gap=14 start=16 h=280 y=84 -->
+  <!-- Arrows between stages y=224 (84+140) -->
+  <line x1='191' y1='224' x2='205' y2='224' stroke='#30363D' stroke-width='2'/><polygon points='205,219 216,224 205,229' fill='#30363D'/>
+  <line x1='380' y1='224' x2='394' y2='224' stroke='#30363D' stroke-width='2'/><polygon points='394,219 405,224 394,229' fill='#30363D'/>
+  <line x1='569' y1='224' x2='583' y2='224' stroke='#30363D' stroke-width='2'/><polygon points='583,219 594,224 583,229' fill='#30363D'/>
+  <line x1='758' y1='224' x2='772' y2='224' stroke='#30363D' stroke-width='2'/><polygon points='772,219 783,224 772,229' fill='#30363D'/>
+  <line x1='947' y1='224' x2='961' y2='224' stroke='#30363D' stroke-width='2'/><polygon points='961,219 972,224 961,229' fill='#30363D'/>
+  <line x1='1136' y1='224' x2='1150' y2='224' stroke='#30363D' stroke-width='2'/><polygon points='1150,219 1161,224 1150,229' fill='#30363D'/>
+
+  <!-- S0 SecretScan x=16 w=175 -->
+  <rect x='16' y='89' width='175' height='248' rx='6' fill='#0D1117' stroke='#D97706' stroke-width='2'/>
+  <rect x='16' y='89' width='175' height='46' rx='6' fill='#D97706'/><rect x='16' y='116' width='175' height='14' fill='#D97706'/>
+  <text x='103' y='84' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#D97706'>STAGE 0</text>
+  <text x='103' y='115' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='white'>SecretScan</text>
+  <text x='103' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>detect-secrets</text>
+  <text x='103' y='180' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Scans all files</text>
+  <text x='103' y='202' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>before any code</text>
+  <text x='103' y='224' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>runs</text>
+  <text x='103' y='252' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>excludes .env.example</text>
+  <text x='103' y='272' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>gates all stages</text>
+
+  <!-- S1 Lint x=205 w=175 -->
+  <rect x='205' y='89' width='175' height='248' rx='6' fill='#0D1117' stroke='#3B82F6' stroke-width='2'/>
+  <rect x='205' y='89' width='175' height='46' rx='6' fill='#3B82F6'/><rect x='205' y='116' width='175' height='14' fill='#3B82F6'/>
+  <text x='292' y='84' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#3B82F6'>STAGE 1</text>
+  <text x='292' y='115' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='white'>Lint</text>
+  <text x='292' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#93C5FD'>yamllint</text>
+  <text x='292' y='178' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#93C5FD'>black --check</text>
+  <text x='292' y='200' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#93C5FD'>flake8</text>
+  <text x='292' y='220' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#93C5FD'>bandit -ll</text>
+  <text x='292' y='252' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>pipeline lints itself</text>
+  <text x='292' y='272' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>dependsOn SecretScan</text>
+
+  <!-- S2 Test x=394 w=175 -->
+  <rect x='394' y='89' width='175' height='248' rx='6' fill='#0D1117' stroke='#0E9F6E' stroke-width='2'/>
+  <rect x='394' y='89' width='175' height='46' rx='6' fill='#0E9F6E'/><rect x='394' y='116' width='175' height='14' fill='#0E9F6E'/>
+  <text x='481' y='84' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#0E9F6E'>STAGE 2</text>
+  <text x='481' y='115' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='white'>Test</text>
+  <text x='481' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#6EE7B7'>233 passed</text>
+  <text x='481' y='178' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>0 failed</text>
+  <text x='481' y='200' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>pytest</text>
+  <text x='481' y='232' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>mocked Kafka+Spark</text>
+  <text x='481' y='252' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>structlog fixtures</text>
+
+  <!-- S3 Coverage x=583 w=175 -->
+  <rect x='583' y='89' width='175' height='248' rx='6' fill='#0D1117' stroke='#7C3AED' stroke-width='2'/>
+  <rect x='583' y='89' width='175' height='46' rx='6' fill='#7C3AED'/><rect x='583' y='116' width='175' height='14' fill='#7C3AED'/>
+  <text x='670' y='84' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#7C3AED'>STAGE 3</text>
+  <text x='670' y='115' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='white'>Coverage</text>
+  <text x='670' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='18' font-weight='700' fill='#C4B5FD'>94.49%</text>
+  <text x='670' y='178' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>gate: ≥ 66%</text>
+  <text x='670' y='200' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>pytest-cov</text>
+  <text x='670' y='232' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>HTML report artifact</text>
+
+  <!-- S4 Build x=772 w=175 -->
+  <rect x='772' y='89' width='175' height='248' rx='6' fill='#0D1117' stroke='#1A56DB' stroke-width='2'/>
+  <rect x='772' y='89' width='175' height='46' rx='6' fill='#1A56DB'/><rect x='772' y='116' width='175' height='14' fill='#1A56DB'/>
+  <text x='859' y='84' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#1A56DB'>STAGE 4</text>
+  <text x='859' y='115' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='white'>Build</text>
+  <text x='859' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#79B8FF'>Train locally</text>
+  <text x='859' y='178' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>V1 pkl · V2 json</text>
+  <text x='859' y='200' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>FORCE_RETRAIN=true</text>
+  <text x='859' y='232' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>artifact gate</text>
+  <text x='859' y='252' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#79B8FF'>VERSION=v2</text>
+
+  <!-- S5 ModelTraining x=961 w=175 -->
+  <rect x='961' y='89' width='175' height='248' rx='6' fill='#0D1117' stroke='#0E9F6E' stroke-width='2'/>
+  <rect x='961' y='89' width='175' height='46' rx='6' fill='#0E9F6E'/><rect x='961' y='116' width='175' height='14' fill='#0E9F6E'/>
+  <text x='1048' y='84' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#0E9F6E'>STAGE 5</text>
+  <text x='1048' y='115' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='white'>ModelTraining</text>
+  <text x='1048' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#6EE7B7'>V1 → Staging</text>
+  <text x='1048' y='178' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#6EE7B7'>V2 → Production</text>
+  <text x='1048' y='200' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>FORCE_RETRAIN</text>
+  <text x='1048' y='220' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>=true both</text>
+  <text x='1048' y='244' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>MLflow aliases</text>
+  <text x='1048' y='264' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>MLflow ≥ 2.9 API</text>
+
+  <!-- S6 Deploy x=1150 w=234 -->
+  <rect x='1150' y='89' width='234' height='248' rx='6' fill='#0D1117' stroke='#D97706' stroke-width='2'/>
+  <rect x='1150' y='89' width='234' height='46' rx='6' fill='#D97706'/><rect x='1150' y='116' width='234' height='14' fill='#D97706'/>
+  <text x='1267' y='84' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='#D97706'>STAGE 6</text>
+  <text x='1267' y='115' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='white'>Deploy</text>
+  <text x='1267' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#FCD34D'>dbt → Databricks</text>
+  <text x='1267' y='178' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#FCD34D'>dbt → Snowflake</text>
+  <text x='1267' y='200' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>sep. env injection</text>
+  <text x='1267' y='220' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#FCD34D'>Manual approval</text>
+  <text x='1267' y='252' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>environment: production</text>
+
+  <!-- Details panel y=384 h=190 -->
+  <rect x='16' y='364' width='1368' height='190' rx='6' fill='#0D1117' stroke='#30363D' stroke-width='1'/>
+  <text x='36' y='400' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>PIPELINE CONFIG</text>
+  <text x='36' y='434' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>DENIAL_MODEL_VERSION: v2</text>
+  <text x='36' y='456' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Pool: ubuntu-22.04 (pinned)</text>
+  <text x='36' y='478' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Triggers: push + PR</text>
+  <text x='36' y='500' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Branches: main + dev</text>
+  <text x='36' y='522' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>FORCE_RETRAIN: true</text>
+  <line x1='270' y1='392' x2='270' y2='572' stroke='#21262D' stroke-width='1'/>
+  <text x='290' y='400' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>MODEL REGISTRY</text>
+  <text x='290' y='434' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>denial-risk-sklearn → staging alias</text>
+  <text x='290' y='456' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>denial-risk-lgbm → production alias</text>
+  <text x='290' y='478' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>set_registered_model_alias (≥ 2.9)</text>
+  <text x='290' y='500' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Hot-swap: DENIAL_MODEL_VERSION=v1</text>
+  <line x1='680' y1='392' x2='680' y2='572' stroke='#21262D' stroke-width='1'/>
+  <text x='700' y='400' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>DEVOPS SECRETS (Library)</text>
+  <text x='700' y='434' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>DATABRICKS_HOST_SECRET</text>
+  <text x='700' y='456' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>DATABRICKS_TOKEN_SECRET</text>
+  <text x='700' y='478' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>SNOWFLAKE_ACCOUNT_SECRET</text>
+  <text x='700' y='500' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>SNOWFLAKE_PASSWORD_SECRET</text>
+  <line x1='1040' y1='392' x2='1040' y2='572' stroke='#21262D' stroke-width='1'/>
+  <text x='1060' y='400' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6A737D' letter-spacing='1'>DBT DUAL TARGET</text>
+  <text x='1060' y='434' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>databricks: Bronze→Silver→Gold Delta</text>
+  <text x='1060' y='456' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>snowflake: staging→intermediate→marts</text>
+  <text x='1060' y='478' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Cortex: --select denial_explanations</text>
+  <text x='1060' y='500' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Separate env injection per target</text>
+ <text x='700' y='578' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>.azuredevops/azure-pipelines.yml</text>
+  <text x='700' y='618' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#FCD34D'>github.com/SelvaSubr/AI-ClaimOps360</text>
+</svg>

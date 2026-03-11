@@ -1,0 +1,70 @@
+version: 2
+
+# ── Source tables (pipeline output — loaded by make snowflake-load or Snowpipe)
+sources:
+  - name: silver
+    database: CLAIMS_ANALYTICS
+    schema: SILVER
+    tables:
+      - name: claims           # SILVER.CLAIMS — output of bronze_to_silver.py
+        columns:
+          - name: claim_id
+            tests: [not_null, unique]
+          - name: denial_risk_score
+            tests: [not_null]
+
+  - name: gold
+    database: CLAIMS_ANALYTICS
+    schema: GOLD
+    tables:
+      - name: remittance       # GOLD.REMITTANCE — output of remittance_generator.py
+        columns:
+          - name: claim_id
+            tests: [not_null]
+          - name: status
+            tests:
+              - accepted_values:
+                  values: ["paid", "denied"]
+
+# ── dbt models (all land in GOLD schema — see dbt_project.yml + profiles.yml) ──
+models:
+  - name: stg_claims
+    columns:
+      - name: claim_id
+        tests: [not_null, unique]
+      - name: risk_tier
+        tests:
+          - accepted_values:
+              values: ["HIGH", "MEDIUM", "LOW"]
+  - name: stg_remittance
+    columns:
+      - name: claim_id
+        tests: [not_null, unique]
+  - name: stg_providers
+    columns:
+      - name: provider_npi
+        tests: [not_null, unique]
+  - name: int_claim_adjudication
+    columns:
+      - name: claim_id
+        tests: [not_null, unique]
+      - name: adjudication_status
+        tests:
+          - accepted_values:
+              values: ["paid", "denied"]
+  - name: claims_by_provider
+    columns:
+      - name: billing_npi
+        tests: [not_null, unique]
+  - name: denial_rates
+    columns:
+      - name: claim_month
+        tests: [not_null]
+  - name: revenue_summary
+    columns:
+      - name: claim_month
+        tests: [not_null, unique]
+  - name: denial_explanations
+    columns:
+      - name: claim_id
+        tests: [not_null, unique]

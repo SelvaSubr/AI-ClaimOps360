@@ -1,0 +1,163 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='660' viewBox='0 0 1200 660'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#0D1117'/><stop offset='100%' stop-color='#161B22'/></linearGradient>
+    <linearGradient id='hdr' x1='0' y1='0' x2='1' y2='0'><stop offset='0%' stop-color='#1A56DB'/><stop offset='100%' stop-color='#0E9F6E'/></linearGradient>
+  </defs>
+  <rect width='1200' height='660' fill='url(#bg)'/>
+  <rect x='0' y='0' width='1200' height='72' fill='url(#hdr)' opacity='0.95'/>
+  <text x='600' y='40' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='white'>AI-ClaimOps360 — End-to-End Pipeline Flow</text>
+  <text x='600' y='62' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='rgba(255,255,255,0.78)'>10-step automated claims pipeline · EDI 837P → FHIR R4 → Kafka → Delta Lake → Snowflake Cortex LLM</text>
+
+  <text x='30' y='86' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#58A6FF' letter-spacing='1.5'>MAIN PIPELINE</text>
+
+  <!-- 8 main nodes w=128 step=142 h=108 y=100 -->
+  <rect x='30' y='100' width='128' height='108' rx='6' fill='#161B22' stroke='#1A56DB' stroke-width='1.5'/><rect x='30' y='100' width='128' height='5' rx='2' fill='#1A56DB'/>
+  <text x='94' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 1</text>
+  <text x='94' y='138' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#79B8FF'>EDI 837P</text>
+  <text x='94' y='158' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>File Input</text>
+  <text x='94' y='177' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>834 · 835</text>
+  <line x1='158' y1='154' x2='170' y2='154' stroke='#1A56DB' stroke-width='2'/><polygon points='170,149 180,154 170,159' fill='#1A56DB'/>
+  <text x='164' y='146' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='10' fill='#C9D1D9'>A</text>
+
+  <rect x='172' y='100' width='128' height='108' rx='6' fill='#161B22' stroke='#1A56DB' stroke-width='1.5'/><rect x='172' y='100' width='128' height='5' rx='2' fill='#1A56DB'/>
+  <text x='236' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 2</text>
+  <text x='236' y='138' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#79B8FF'>Parse + Map</text>
+  <text x='236' y='158' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>→ FHIR R4</text>
+  <text x='236' y='177' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>edi_parser</text>
+   <text x='236' y='195' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>fhir_mapper</text>
+  <line x1='300' y1='154' x2='312' y2='154' stroke='#1A56DB' stroke-width='2'/><polygon points='312,149 322,154 312,159' fill='#1A56DB'/>
+  <text x='306' y='146' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='10' fill='#C9D1D9'>B</text>
+
+  <rect x='314' y='100' width='128' height='108' rx='6' fill='#161B22' stroke='#3B82F6' stroke-width='1.5'/><rect x='314' y='100' width='128' height='5' rx='2' fill='#3B82F6'/>
+  <text x='378' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 3</text>
+  <text x='378' y='138' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#93C5FD'>Kafka</text>
+  <text x='378' y='158' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>claims.raw</text>
+  <text x='378' y='177' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>5 topics · 4 groups</text>
+  <line x1='442' y1='154' x2='454' y2='154' stroke='#3B82F6' stroke-width='2'/><polygon points='454,149 464,154 454,159' fill='#3B82F6'/>
+  <text x='448' y='146' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='10' fill='#C9D1D9'>C</text>
+
+  <rect x='456' y='100' width='128' height='108' rx='6' fill='#161B22' stroke='#0E9F6E' stroke-width='1.5'/><rect x='456' y='100' width='128' height='5' rx='2' fill='#0E9F6E'/>
+  <text x='520' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 4</text>
+  <text x='520' y='138' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#6EE7B7'>Delta Bronze</text>
+  <text x='520' y='158' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>APPEND ONLY</text>
+  <text x='520' y='177' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>claim_consumer.py</text>
+  <line x1='584' y1='154' x2='596' y2='154' stroke='#0E9F6E' stroke-width='2'/><polygon points='596,149 606,154 596,159' fill='#0E9F6E'/>
+  <text x='590' y='146' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='10' fill='#C9D1D9'>D</text>
+
+  <rect x='598' y='100' width='128' height='108' rx='6' fill='#161B22' stroke='#0E9F6E' stroke-width='1.5'/><rect x='598' y='100' width='128' height='5' rx='2' fill='#0E9F6E'/>
+  <text x='662' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 5</text>
+  <text x='662' y='134' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#6EE7B7'>Delta Silver</text>
+  <text x='662' y='152' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>MERGE + AI Score</text>
+  <text x='662' y='169' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#A78BFA'>SHAP · 7 CMS fields</text>
+  <text x='662' y='185' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>bronze_to_silver.py</text>
+  <line x1='726' y1='154' x2='738' y2='154' stroke='#0E9F6E' stroke-width='2'/><polygon points='738,149 748,154 738,159' fill='#0E9F6E'/>
+  <text x='732' y='146' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='10' fill='#C9D1D9'>E</text>
+
+  <rect x='740' y='100' width='128' height='108' rx='6' fill='#161B22' stroke='#D97706' stroke-width='1.5'/><rect x='740' y='100' width='128' height='5' rx='2' fill='#D97706'/>
+  <text x='804' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 6</text>
+  <text x='804' y='138' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#FCD34D'>Delta Gold</text>
+  <text x='804' y='158' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>OVERWRITE</text>
+  <text x='804' y='177' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>3 aggregation tables</text>
+  <line x1='868' y1='154' x2='880' y2='154' stroke='#D97706' stroke-width='2'/><polygon points='880,149 890,154 880,159' fill='#D97706'/>
+
+  <rect x='882' y='100' width='128' height='108' rx='6' fill='#161B22' stroke='#D97706' stroke-width='1.5'/><rect x='882' y='100' width='128' height='5' rx='2' fill='#D97706'/>
+  <text x='946' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 7</text>
+  <text x='946' y='138' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#FCD34D'>dbt</text>
+  <text x='946' y='158' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>staging → marts</text>
+  <text x='946' y='177' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>Databricks + Snowflake</text>
+  <line x1='1010' y1='154' x2='1022' y2='154' stroke='#D97706' stroke-width='2'/><polygon points='1022,149 1032,154 1022,159' fill='#D97706'/>
+  <text x='1016' y='146' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='10' fill='#C9D1D9'>F</text>
+
+  <rect x='1024' y='100' width='148' height='108' rx='6' fill='#161B22' stroke='#29B5E8' stroke-width='1.5'/><rect x='1024' y='100' width='148' height='5' rx='2' fill='#29B5E8'/>
+  <text x='1098' y='96' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 8</text>
+  <text x='1098' y='134' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#7DD3FC'>Snowflake + Cortex</text>
+  <text x='1098' y='154' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>NL explanations</text>
+  <text x='1098' y='173' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>PHI stays in Snowflake</text>
+
+  <!-- PAYER LOOP -->
+  <line x1='30' y1='228' x2='1170' y2='228' stroke='#30363D' stroke-width='1' stroke-dasharray='6,4'/>
+  <text x='30' y='248' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#F59E0B' letter-spacing='1.5'>PAYER ADJUDICATION — parallel · claims-payer consumer group</text>
+  <text x='990' y='248' font-family='Segoe UI,system-ui,sans-serif' font-size='11' font-weight='700' fill='#C9D1D9'>STEP 9</text>
+  <!-- 6 nodes w=155 gap=15 h=88 y=260 -->
+  <rect x='30' y='260' width='155' height='88' rx='6' fill='#111008' stroke='#D97706' stroke-width='1.5'/><rect x='30' y='260' width='155' height='5' rx='2' fill='#D97706'/>
+  <text x='107' y='286' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>Kafka claims.raw</text>
+  <text x='107' y='306' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>independent offset</text>
+  <text x='107' y='324' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>claim_processor.py</text>
+  <line x1='185' y1='304' x2='200' y2='304' stroke='#D97706' stroke-width='2'/><polygon points='200,299 210,304 200,309' fill='#D97706'/>
+
+  <rect x='208' y='260' width='155' height='88' rx='6' fill='#111008' stroke='#D97706' stroke-width='1.5'/><rect x='208' y='260' width='155' height='5' rx='2' fill='#D97706'/>
+  <text x='285' y='286' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>Eligibility Check</text>
+  <text x='285' y='306' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>834 member store</text>
+  <text x='285' y='324' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>eligibility_checker.py</text>
+  <line x1='363' y1='304' x2='378' y2='304' stroke='#D97706' stroke-width='2'/><polygon points='378,299 388,304 378,309' fill='#D97706'/>
+
+  <rect x='386' y='260' width='155' height='88' rx='6' fill='#111008' stroke='#D97706' stroke-width='1.5'/><rect x='386' y='260' width='155' height='5' rx='2' fill='#D97706'/>
+  <text x='463' y='286' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>Payer Engine</text>
+  <text x='463' y='306' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>adjudication rules</text>
+  <text x='463' y='324' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>CO-197 · fee schedule</text>
+  <line x1='541' y1='304' x2='556' y2='304' stroke='#D97706' stroke-width='2'/><polygon points='556,299 566,304 556,309' fill='#D97706'/>
+
+  <rect x='564' y='260' width='155' height='88' rx='6' fill='#111008' stroke='#D97706' stroke-width='1.5'/><rect x='564' y='260' width='155' height='5' rx='2' fill='#D97706'/>
+  <text x='641' y='286' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>Remittance Gen</text>
+  <text x='641' y='306' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>EDI 835 output</text>
+  <text x='641' y='324' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>remittance_generator.py</text>
+  <line x1='719' y1='304' x2='734' y2='304' stroke='#D97706' stroke-width='2'/><polygon points='734,299 744,304 734,309' fill='#D97706'/>
+
+  <rect x='742' y='260' width='155' height='88' rx='6' fill='#111008' stroke='#D97706' stroke-width='1.5'/><rect x='742' y='260' width='155' height='5' rx='2' fill='#D97706'/>
+  <text x='819' y='282' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>Kafka remittance.835</text>
+  <text x='819' y='302' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>claims-remittance</text>
+  <text x='819' y='322' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>remittance_consumer.py</text>
+  <line x1='897' y1='304' x2='912' y2='304' stroke='#D97706' stroke-width='2'/><polygon points='912,299 922,304 912,309' fill='#D97706'/>
+
+  <rect x='920' y='260' width='155' height='88' rx='6' fill='#111008' stroke='#D97706' stroke-width='1.5'/><rect x='920' y='260' width='155' height='5' rx='2' fill='#D97706'/>
+  <text x='997' y='286' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>Delta Gold/remittance</text>
+  <text x='997' y='306' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>APPEND</text>
+  <text x='997' y='324' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>gold/remittance/</text>
+
+  <!-- PHASE 2 -->
+  <line x1='30' y1='370' x2='1170' y2='370' stroke='#30363D' stroke-width='1' stroke-dasharray='6,4'/>
+  <text x='30' y='390' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#A78BFA' letter-spacing='1.5'>PHASE 2 — REAL-TIME INFERENCE · Step 10 · foreachBatch → score → fan-out</text>
+  <!-- 5 nodes w=175 gap=18 h=94 y=404 -->
+  <rect x='30' y='404' width='175' height='94' rx='6' fill='#0C0920' stroke='#7C3AED' stroke-width='1.5'/><rect x='30' y='404' width='175' height='5' rx='2' fill='#7C3AED'/>
+  <text x='117' y='432' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#C4B5FD'>Structured Streaming</text>
+  <text x='117' y='452' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>claims.validated</text>
+  <text x='117' y='471' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>streaming_inference.py</text>
+  <line x1='205' y1='451' x2='222' y2='451' stroke='#7C3AED' stroke-width='2'/><polygon points='222,446 232,451 222,456' fill='#7C3AED'/>
+
+  <rect x='230' y='404' width='175' height='94' rx='6' fill='#0C0920' stroke='#7C3AED' stroke-width='1.5'/><rect x='230' y='404' width='175' height='5' rx='2' fill='#7C3AED'/>
+  <text x='317' y='432' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#C4B5FD'>Model Serving REST</text>
+  <text x='317' y='452' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>V2 LightGBM</text>
+  <text x='317' y='471' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='#8B949E'>DENIAL_MODEL_VERSION=v2</text>
+  <line x1='405' y1='451' x2='422' y2='451' stroke='#7C3AED' stroke-width='2'/><polygon points='422,446 432,451 422,456' fill='#7C3AED'/>
+
+  <rect x='430' y='404' width='175' height='94' rx='6' fill='#091A12' stroke='#0E9F6E' stroke-width='1.5'/><rect x='430' y='404' width='175' height='5' rx='2' fill='#0E9F6E'/>
+  <text x='517' y='430' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#6EE7B7'>score &lt; 40</text>
+  <text x='517' y='451' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>→ validated</text>
+  <text x='517' y='470' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>auto approved</text>
+  <line x1='605' y1='451' x2='622' y2='451' stroke='#D97706' stroke-width='2'/><polygon points='622,446 632,451 622,456' fill='#D97706'/>
+
+  <rect x='630' y='404' width='175' height='94' rx='6' fill='#111008' stroke='#D97706' stroke-width='1.5'/><rect x='630' y='404' width='175' height='5' rx='2' fill='#D97706'/>
+  <text x='717' y='430' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#FCD34D'>score 40–69</text>
+  <text x='717' y='451' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>→ review_queue</text>
+  <text x='717' y='470' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>human review required</text>
+  <line x1='805' y1='451' x2='822' y2='451' stroke='#EF4444' stroke-width='2'/><polygon points='822,446 832,451 822,456' fill='#EF4444'/>
+
+  <rect x='830' y='404' width='175' height='94' rx='6' fill='#1A0808' stroke='#EF4444' stroke-width='1.5'/><rect x='830' y='404' width='175' height='5' rx='2' fill='#EF4444'/>
+  <text x='917' y='430' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='#FCA5A5'>score ≥ 70</text>
+  <text x='917' y='451' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>→ rejected</text>
+  <text x='917' y='470' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>CMS: human_review_required</text>
+
+  <!-- Stats bar -->
+  <rect x='0' y='524' width='1200' height='68' fill='#0D1117'/><line x1='0' y1='524' x2='1200' y2='524' stroke='#30363D' stroke-width='1'/>
+  <rect x='20' y='538' width='155' height='28' rx='14' fill='#161B22' stroke='#1A56DB' stroke-width='1'/>
+  <text x='97' y='556' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#79B8FF'>50 claims / run</text>
+  <rect x='188' y='538' width='185' height='28' rx='14' fill='#161B22' stroke='#0E9F6E' stroke-width='1'/>
+  <text x='280' y='556' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#6EE7B7'>~38 paid · ~12 denied</text>
+  <rect x='386' y='538' width='185' height='28' rx='14' fill='#161B22' stroke='#7C3AED' stroke-width='1'/>
+  <text x='478' y='556' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C4B5FD'>7 CMS fields per claim</text>
+  <rect x='584' y='538' width='200' height='28' rx='14' fill='#161B22' stroke='#29B5E8' stroke-width='1'/>
+  <text x='684' y='556' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#7DD3FC'>4 Kafka consumer groups</text>
+  <rect x='798' y='538' width='220' height='28' rx='14' fill='#161B22' stroke='#D97706' stroke-width='1'/>
+  <text x='908' y='556' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#FCD34D'>233 tests · 94.49% coverage</text>
+  <text x='645' y='626' text-anchor='end' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#FCD34D'>github.com/SelvaSubr/AI-ClaimOps360</text>
+</svg>

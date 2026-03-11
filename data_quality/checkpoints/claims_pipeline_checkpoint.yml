@@ -1,0 +1,22 @@
+name: claims_pipeline_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+run_name_template: '%Y%m%d-%H%M%S-claims-pipeline'
+validations:
+  - batch_request:
+      datasource_name: delta_bronze
+      data_connector_name: default_inferred_data_connector_name
+      data_asset_name: bronze
+    expectation_suite_name: bronze_claims_suite
+  - batch_request:
+      datasource_name: delta_silver
+      data_connector_name: default_inferred_data_connector_name
+      data_asset_name: silver
+    expectation_suite_name: silver_claims_suite
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction

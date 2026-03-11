@@ -1,0 +1,63 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='780' viewBox='0 0 1200 780'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#0D1117'/><stop offset='100%' stop-color='#161B22'/></linearGradient>
+    <linearGradient id='hdr' x1='0' y1='0' x2='1' y2='0'><stop offset='0%' stop-color='#1A56DB'/><stop offset='100%' stop-color='#0E9F6E'/></linearGradient>
+  </defs>
+  <rect width='1200' height='780' fill='url(#bg)'/>
+  <rect x='0' y='0' width='1200' height='72' fill='url(#hdr)' opacity='0.95'/>
+  <text x='600' y='40' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='white'>AI-ClaimOps360 — Technology Stack by Layer</text>
+  <text x='600' y='62' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='rgba(255,255,255,0.78)'>7 platform layers · Azure · Databricks · Snowflake · MLflow · Terraform · Azure DevOps</text>
+
+  <!-- Row h=88 gap=12 label w=160 content x=188 w=992 -->
+  <!-- SOURCE y=82 -->
+  <rect x='20' y='82' width='160' height='88' rx='6' fill='#1A56DB'/>
+  <text x='100' y='116' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='white' letter-spacing='0.5'>SOURCE</text>
+  <text x='100' y='136' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='rgba(255,255,255,0.7)'>LAYER 1</text>
+  <rect x='188' y='82' width='992' height='88' rx='6' fill='#0D1117' stroke='#1A56DB' stroke-width='1.5'/>
+  <text x='210' y='114' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#79B8FF'>EDI X12 837P · 834 · 835</text>
+  <text x='210' y='140' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>FHIR R4 JSON · HL7 v2.x · Healthcare interoperability standards (CMS, NCPDP)</text>
+
+  <!-- MESSAGE BUS y=182 -->
+  <rect x='20' y='182' width='160' height='88' rx='6' fill='#3B82F6'/>
+  <text x='100' y='212' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='white' letter-spacing='0.5'>MESSAGE BUS</text>
+  <text x='100' y='232' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='rgba(255,255,255,0.7)'>LAYER 2</text>
+  <rect x='188' y='182' width='992' height='88' rx='6' fill='#0D1117' stroke='#3B82F6' stroke-width='1.5'/>
+  <text x='210' y='214' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#93C5FD'>Apache Kafka</text>
+  <text x='210' y='240' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Docker locally (Confluent 7.5) · Azure Event Hubs in production · 5 topics · 4 consumer groups · 7-day retention</text>
+
+  <!-- COMPUTE y=282 -->
+  <rect x='20' y='282' width='160' height='88' rx='6' fill='#0E9F6E'/>
+  <text x='100' y='316' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='white' letter-spacing='0.5'>COMPUTE</text>
+  <text x='100' y='336' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='rgba(255,255,255,0.7)'>LAYER 3</text>
+  <rect x='188' y='282' width='992' height='88' rx='6' fill='#0D1117' stroke='#0E9F6E' stroke-width='1.5'/>
+  <text x='210' y='314' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#6EE7B7'>Azure Databricks Premium · PySpark 3.5</text>
+  <text x='210' y='340' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Structured Streaming · foreachBatch · Single-node Standard_D2ads_v6 · autoterminate 15 min</text>
+
+  <!-- STORAGE y=382 -->
+  <rect x='20' y='382' width='160' height='88' rx='6' fill='#059669'/>
+  <text x='100' y='416' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='white' letter-spacing='0.5'>STORAGE</text>
+  <text x='100' y='436' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='rgba(255,255,255,0.7)'>LAYER 4</text>
+  <rect x='188' y='382' width='992' height='88' rx='6' fill='#0D1117' stroke='#059669' stroke-width='1.5'/>
+  <text x='210' y='414' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#6EE7B7'>ADLS Gen2 (HNS=true) · Delta Lake 3.0 (ACID)</text>
+  <text x='210' y='440' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Bronze (APPEND) → Silver (MERGE INTO) → Gold (OVERWRITE) · Z-ORDER by billing_npi + date_of_service</text>
+
+  <!-- AI/ML y=482 -->
+  <rect x='20' y='482' width='160' height='88' rx='6' fill='#7C3AED'/>
+  <text x='100' y='516' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='white' letter-spacing='0.5'>AI / ML</text>
+  <text x='100' y='536' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='rgba(255,255,255,0.7)'>LAYER 5</text>
+  <rect x='188' y='482' width='992' height='88' rx='6' fill='#0D1117' stroke='#7C3AED' stroke-width='1.5'/>
+  <text x='210' y='514' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#C4B5FD'>LightGBM 4.3 · SHAP 0.44 (CMS-compliant) · MLflow 2.12</text>
+  <text x='210' y='540' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>V1 sklearn RF AUC 0.8149 (cross-val) → Staging · V2 LightGBM AUC 0.8091 (held-out) → Production · FORCE_RETRAIN in CI</text>
+
+  <!-- ANALYTICS y=582 -->
+  <rect x='20' y='582' width='160' height='88' rx='6' fill='#D97706'/>
+  <text x='100' y='616' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' font-weight='700' fill='white' letter-spacing='0.5'>ANALYTICS</text>
+  <text x='100' y='636' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='11' fill='rgba(255,255,255,0.7)'>LAYER 6</text>
+  <rect x='188' y='582' width='992' height='88' rx='6' fill='#0D1117' stroke='#D97706' stroke-width='1.5'/>
+  <text x='210' y='614' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#FCD34D'>Snowflake Enterprise · dbt 1.7 dual-target · Cortex COMPLETE()</text>
+  <text x='210' y='640' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>llama3.1-70b · Snowsight dashboards · COPY INTO from ADLS Gen2 · PHI never leaves Snowflake</text>
+
+  <!-- GOVERNANCE footer -->
+  <text x='600' y='700' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>Governance layer: Terraform IaC · Azure DevOps 7-stage CI/CD · Key Vault · Purview · detect-secrets</text>
+  <text x='600' y='750' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#FCD34D'>github.com/SelvaSubr/AI-ClaimOps360</text>
+</svg>
