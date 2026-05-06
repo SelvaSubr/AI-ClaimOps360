@@ -1,0 +1,35 @@
+# src/simulation.config_example — Mock-only simulation values template
+# Copy to src/simulation.config and fill in your own fictional test values.
+#   cp src/simulation.config_example src/simulation.config
+#
+# IMPORTANT: simulation.config is git-ignored. Never commit real identifiers.
+# All values here must be fictional — not valid ABA routing numbers, account
+# numbers, or real payer/provider IDs.
+#
+# Only variables NOT present in .env belong here.
+# .env always takes priority (loaded first by every module).
+
+# ── Mock payer / submitter identifiers ────────────────────────────────────
+PAYER_ID=PAYER-PLACEHOLDER
+SUBMITTER_ID=SUBMITTER-PLACEHOLDER
+
+# ── Mock ACH routing numbers (NOT valid ABA — fictional test values only) ──
+PAYER_ROUTING_NUM=000000000
+PROVIDER_ROUTING_NUM=000000000
+
+# ── Mock bank account numbers ──────────────────────────────────────────────
+PAYER_ACCOUNT_NUM=0000000000
+PROVIDER_ACCOUNT_NUM=0000000000
+
+# ── Risk tier thresholds (billed USD) ─────────────────────────────────────
+# HIGH / MEDIUM thresholds used by silver_to_gold.py to assign risk_tier.
+# Tune to match your claim population's billed-amount distribution.
+RISK_TIER_HIGH_USD=1000
+RISK_TIER_MEDIUM_USD=500
+
+# ── Mock patient name for 835 NM1*QC segment ──────────────────────────────
+PATIENT_LAST_NAME=LASTNAME
+PATIENT_FIRST_NAME=FIRSTNAME
+
+# ── 834 enrollment file ────────────────────────────────────────────────────
+ENROLLMENT_834_PATH=sample_data/834/mock_enrollment_001.edi

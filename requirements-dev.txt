@@ -1,0 +1,37 @@
+# requirements-dev.txt
+# Development and testing tools — NOT installed in production.
+# Install: pip install -r requirements-dev.txt
+#
+# To install both core and dev at once:
+#   pip install -r requirements.txt -r requirements-dev.txt
+
+# ── Testing ───────────────────────────────────────────────────────────
+pytest==8.4.2
+pytest-cov==5.0.0
+pytest-mock==3.14.0
+pytest-asyncio==0.23.6
+chispa==0.9.4               # PySpark DataFrame equality assertions (used in test_spark_jobs.py)
+
+# ── Code quality ──────────────────────────────────────────────────────
+black==25.1.0
+flake8==7.3.0
+flake8-bugbear==24.2.6
+flake8-docstrings==1.7.0
+isort==5.13.2
+mypy==1.19.1               # optional — add gradually, do not block on all errors
+
+# ── Security ──────────────────────────────────────────────────────────
+bandit==1.7.8
+detect-secrets==1.4.0
+
+# ── Pre-commit ────────────────────────────────────────────────────────
+pre-commit==3.7.1
+
+# ── Test utilities ────────────────────────────────────────────────────
+responses==0.25.0           # mock HTTP responses in unit tests
+freezegun==1.4.0            # freeze time in tests (e.g. test ingest_ts)
+httpx==0.27.0               # HTTP client for testing Model Serving endpoints
+
+# ── Dev utilities ─────────────────────────────────────────────────────
+ipython==8.24.0
+rich==13.7.1                # pretty terminal output for local scripts

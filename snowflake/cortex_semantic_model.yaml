@@ -1,0 +1,114 @@
+name: claims_analytics_semantic_model
+description: >
+  AI-ClaimOps360 semantic model for healthcare claims analytics.
+  Enables natural-language queries over Gold-layer claims data.
+tables:
+  - name: CLAIMS_BY_PROVIDER
+    description: Aggregated claims metrics grouped by billing NPI
+    base_table:
+      database: CLAIMS_ANALYTICS
+      schema: GOLD
+      table: CLAIMS_BY_PROVIDER
+    dimensions:
+      - name: provider_npi
+        description: 10-digit National Provider Identifier
+        expr: BILLING_NPI
+        data_type: TEXT
+        unique: true
+    measures:
+      - name: claim_count
+        description: Total number of claims submitted
+        expr: CLAIM_COUNT
+        data_type: NUMBER
+      - name: denial_rate
+        description: Proportion of claims flagged for human review (0.0 to 1.0)
+        expr: DENIAL_RATE
+        data_type: NUMBER
+      - name: total_billed
+        description: Sum of all billed amounts in USD
+        expr: TOTAL_BILLED
+        data_type: NUMBER
+      - name: total_paid
+        description: Sum of all paid amounts in USD
+        expr: TOTAL_PAID
+        data_type: NUMBER
+      - name: avg_denial_risk
+        description: Average AI denial risk score 0-100
+        expr: AVG_DENIAL_RISK
+        data_type: NUMBER
+
+  - name: DENIAL_RATES
+    description: Monthly denial rate analysis — one row per provider per month
+    base_table:
+      database: CLAIMS_ANALYTICS
+      schema: GOLD
+      table: DENIAL_RATES
+    time_dimensions:
+      - name: claim_month
+        description: Month of service (truncated to first of month)
+        expr: CLAIM_MONTH
+        data_type: DATE
+    dimensions:
+      - name: provider_npi
+        expr: BILLING_NPI
+        data_type: TEXT
+    measures:
+      - name: high_risk_claims
+        description: Claims with denial risk score >= 70
+        expr: HIGH_RISK_CLAIMS
+        data_type: NUMBER
+      - name: avg_risk_score
+        expr: AVG_RISK_SCORE
+        data_type: NUMBER
+
+  - name: DENIAL_EXPLANATIONS
+    description: AI-generated plain-English denial explanations (LLM-powered)
+    base_table:
+      database: CLAIMS_ANALYTICS
+      schema: GOLD
+      table: DENIAL_EXPLANATIONS
+    dimensions:
+      - name: claim_id
+        expr: CLAIM_ID
+        data_type: TEXT
+        unique: true
+      - name: cortex_explanation
+        description: LLM-generated provider-facing explanation
+        expr: CORTEX_PROVIDER_EXPLANATION
+        data_type: TEXT
+      - name: recommended_action
+        expr: RECOMMENDED_ACTION
+        data_type: TEXT
+    measures:
+      - name: denial_risk_score
+        expr: DENIAL_RISK_SCORE
+        data_type: NUMBER
+
+  - name: REVENUE_SUMMARY
+    description: Monthly revenue summary — billed vs paid vs adjustments
+    base_table:
+      database: CLAIMS_ANALYTICS
+      schema: GOLD
+      table: REVENUE_SUMMARY
+    time_dimensions:
+      - name: claim_month
+        expr: CLAIM_MONTH
+        data_type: DATE
+    measures:
+      - name: total_billed
+        expr: TOTAL_BILLED
+        data_type: NUMBER
+      - name: total_paid
+        expr: TOTAL_PAID
+        data_type: NUMBER
+      - name: collection_rate_pct
+        description: Percentage of billed amount that was paid
+        expr: COLLECTION_RATE_PCT
+        data_type: NUMBER
+      - name: claim_count
+        expr: CLAIM_COUNT
+        data_type: NUMBER
+
+# Upload command:
+# PUT file://snowflake/cortex_semantic_model.yaml @~/cortex_stage AUTO_COMPRESS=FALSE;
+# Then in Snowsight: Cortex Analyst → select cortex_stage → this YAML appears

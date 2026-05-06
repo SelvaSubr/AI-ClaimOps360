@@ -1,0 +1,81 @@
+-- setup.sql — Snowflake one-time infrastructure setup. Run as ACCOUNTADMIN.
+-- Idempotent. Creates database, schemas (SILVER + GOLD), warehouse, roles, service user.
+-- Run adls_integration.sql next to create the ADLS-backed external tables.
+
+!set variable_substitution=true;
+USE ROLE ACCOUNTADMIN;
+
+-- ── Drop existing database (clean slate) ─────────────────────────────────────
+DROP DATABASE IF EXISTS CLAIMS_ANALYTICS;
+
+-- ── Database ─────────────────────────────────────────────────────────────────
+CREATE DATABASE IF NOT EXISTS CLAIMS_ANALYTICS
+    DATA_RETENTION_TIME_IN_DAYS = 30
+    COMMENT = 'AI-ClaimOps360 healthcare claims analytics platform';
+
+USE DATABASE CLAIMS_ANALYTICS;
+
+-- ── Schemas ──────────────────────────────────────────────────────────────────
+CREATE SCHEMA IF NOT EXISTS CLAIMS_ANALYTICS.SILVER
+    COMMENT = 'AI-scored claims from bronze_to_silver.py — source for dbt models';
+
+CREATE SCHEMA IF NOT EXISTS CLAIMS_ANALYTICS.GOLD
+    COMMENT = 'Remittance source + dbt staging views + intermediate + mart tables';
+
+-- ── Warehouse ─────────────────────────────────────────────────────────────────
+CREATE WAREHOUSE IF NOT EXISTS CLAIMS_WH
+    WITH WAREHOUSE_SIZE    = 'X-SMALL'
+         MAX_CLUSTER_COUNT = 1
+         MIN_CLUSTER_COUNT = 1
+         AUTO_SUSPEND      = 60
+         AUTO_RESUME       = TRUE
+         INITIALLY_SUSPENDED = TRUE
+    COMMENT = 'AI-ClaimOps360 primary compute — dbt runs + Cortex LLM';
+
+-- ── Roles ─────────────────────────────────────────────────────────────────────
+CREATE ROLE IF NOT EXISTS CLAIMS_ANALYST_ROLE
+    COMMENT = 'Read-only — BI tools, analysts';
+CREATE ROLE IF NOT EXISTS CLAIMS_LOADER_ROLE
+    COMMENT = 'Read + write — dbt, Snowpipe, COPY INTO';
+
+GRANT ROLE CLAIMS_ANALYST_ROLE TO ROLE CLAIMS_LOADER_ROLE;
+GRANT ROLE CLAIMS_LOADER_ROLE  TO ROLE SYSADMIN;
+GRANT ROLE CLAIMS_ANALYST_ROLE TO ROLE SYSADMIN;
+
+-- ── Warehouse + database grants ───────────────────────────────────────────────
+GRANT USAGE ON WAREHOUSE CLAIMS_WH                 TO ROLE CLAIMS_ANALYST_ROLE;
+GRANT USAGE ON DATABASE  CLAIMS_ANALYTICS          TO ROLE CLAIMS_ANALYST_ROLE;
+
+-- ── SILVER schema grants ──────────────────────────────────────────────────────
+GRANT USAGE        ON SCHEMA CLAIMS_ANALYTICS.SILVER TO ROLE CLAIMS_ANALYST_ROLE;
+GRANT CREATE TABLE ON SCHEMA CLAIMS_ANALYTICS.SILVER TO ROLE CLAIMS_LOADER_ROLE;
+GRANT CREATE STAGE ON SCHEMA CLAIMS_ANALYTICS.SILVER TO ROLE CLAIMS_LOADER_ROLE;
+
+GRANT SELECT       ON ALL    TABLES IN SCHEMA CLAIMS_ANALYTICS.SILVER TO ROLE CLAIMS_ANALYST_ROLE;
+GRANT SELECT       ON FUTURE TABLES IN SCHEMA CLAIMS_ANALYTICS.SILVER TO ROLE CLAIMS_ANALYST_ROLE;
+GRANT INSERT, UPDATE, DELETE ON ALL    TABLES IN SCHEMA CLAIMS_ANALYTICS.SILVER TO ROLE CLAIMS_LOADER_ROLE;
+GRANT INSERT, UPDATE, DELETE ON FUTURE TABLES IN SCHEMA CLAIMS_ANALYTICS.SILVER TO ROLE CLAIMS_LOADER_ROLE;
+
+-- ── GOLD schema grants ────────────────────────────────────────────────────────
+GRANT USAGE        ON SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_ANALYST_ROLE;
+GRANT CREATE TABLE ON SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_LOADER_ROLE;
+GRANT CREATE VIEW  ON SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_LOADER_ROLE;
+GRANT CREATE STAGE ON SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_LOADER_ROLE;
+
+GRANT SELECT       ON ALL    TABLES IN SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_ANALYST_ROLE;
+GRANT SELECT       ON FUTURE TABLES IN SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_ANALYST_ROLE;
+GRANT INSERT, UPDATE, DELETE ON ALL    TABLES IN SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_LOADER_ROLE;
+GRANT INSERT, UPDATE, DELETE ON FUTURE TABLES IN SCHEMA CLAIMS_ANALYTICS.GOLD TO ROLE CLAIMS_LOADER_ROLE;
+
+-- ── Service user ──────────────────────────────────────────────────────────────
+CREATE USER IF NOT EXISTS &SNOWFLAKE_USER
+    PASSWORD             = '&SNOWFLAKE_PASSWORD'
+    LOGIN_NAME           = '&SNOWFLAKE_USER'
+    DISPLAY_NAME         = 'Claims Pipeline Service User'
+    DEFAULT_ROLE         = &SNOWFLAKE_ROLE
+    DEFAULT_WAREHOUSE    = CLAIMS_WH
+    DEFAULT_NAMESPACE    = CLAIMS_ANALYTICS.GOLD
+    MUST_CHANGE_PASSWORD = FALSE
+    COMMENT              = 'Service account for dbt + pipeline automation';
+
+GRANT ROLE &SNOWFLAKE_ROLE TO USER &SNOWFLAKE_USER;

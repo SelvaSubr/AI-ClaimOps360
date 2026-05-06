@@ -1,0 +1,13 @@
+---
+extends: default
+rules:
+  document-start: disable        # Azure DevOps files omit ---
+  line-length:
+    max: 120                     # CI env-var lines exceed 80 chars
+  indentation:
+    spaces: 2
+    indent-sequences: whatever   # accept both indented and non-indented sequences
+  colons:
+    max-spaces-after: -1         # allow alignment spacing in env: blocks
+  comments:
+    min-spaces-from-content: 1

@@ -1,0 +1,56 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='720' viewBox='0 0 1200 720'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#0D1117'/><stop offset='100%' stop-color='#161B22'/></linearGradient>
+    <linearGradient id='hdr' x1='0' y1='0' x2='1' y2='0'><stop offset='0%' stop-color='#1A56DB'/><stop offset='100%' stop-color='#7C3AED'/></linearGradient>
+  </defs>
+  <rect width='1200' height='720' fill='url(#bg)'/>
+  <rect x='0' y='0' width='1200' height='72' fill='url(#hdr)' opacity='0.95'/>
+  <text x='600' y='40' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='white'>CMS Non-Discrimination in AI (2024) — 5 Requirements</text>
+  <text x='600' y='62' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='rgba(255,255,255,0.78)'>7 fields written to Delta Silver per claim · hardcoded constants make violations structurally impossible</text>
+
+  <rect x='18' y='80' width='1164' height='42' rx='6' fill='#091A12' stroke='#0E9F6E' stroke-width='1'/>
+  <text x='600' y='106' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#6EE7B7' font-style='italic'>All five compliance fields are architectural invariants — not model outputs — enforced before inference runs</text>
+
+  <!-- 5 rows h=90 gap=8 y starts at 132 -->
+  <!-- Row 1 y=132 -->
+  <rect x='18' y='132' width='1164' height='90' rx='6' fill='#0D1117' stroke='#21262D' stroke-width='1'/>
+  <rect x='18' y='132' width='78' height='90' rx='6' fill='#1A56DB'/><rect x='84' y='132' width='14' height='90' fill='#1A56DB'/>
+  <text x='55' y='182' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='26' font-weight='700' fill='white'>01</text>
+  <text x='116' y='158' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#79B8FF'>Quantified Feature Attribution</text>
+  <text x='116' y='180' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>SHAP TreeExplainer → exact Shapley values → denial_risk_score (0–100) + decision_basis JSON with % per feature.</text>
+  <text x='116' y='202' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Deterministic: same input always produces same explanation. Legally defensible for CMS audit.</text>
+
+  <!-- Row 2 y=230 -->
+  <rect x='18' y='230' width='1164' height='90' rx='6' fill='#111520' stroke='#21262D' stroke-width='1'/>
+  <rect x='18' y='230' width='78' height='90' rx='6' fill='#7C3AED'/><rect x='84' y='230' width='14' height='90' fill='#7C3AED'/>
+  <text x='55' y='280' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='26' font-weight='700' fill='white'>02</text>
+  <text x='116' y='256' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#C4B5FD'>No Automated Adverse Decisions</text>
+  <text x='116' y='278' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>ai_decision_only = False — hardcoded constant set BEFORE model inference. Cannot be True regardless of model output</text>
+  <text x='116' y='300' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>or version (V1 or V2). Human review always required for final claim determination.</text>
+
+  <!-- Row 3 y=328 -->
+  <rect x='18' y='328' width='1164' height='90' rx='6' fill='#0D1117' stroke='#21262D' stroke-width='1'/>
+  <rect x='18' y='328' width='78' height='90' rx='6' fill='#0E9F6E'/><rect x='84' y='328' width='14' height='90' fill='#0E9F6E'/>
+  <text x='55' y='378' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='26' font-weight='700' fill='white'>03</text>
+  <text x='116' y='354' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#6EE7B7'>Human Review Threshold</text>
+  <text x='116' y='376' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>human_review_required = True when denial_risk_score ≥ REVIEW_SCORE_THRESHOLD (default 70). Business rule —</text>
+  <text x='116' y='398' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>not a model output. Configurable via env var without code change.</text>
+
+  <!-- Row 4 y=426 -->
+  <rect x='18' y='426' width='1164' height='90' rx='6' fill='#111520' stroke='#21262D' stroke-width='1'/>
+  <rect x='18' y='426' width='78' height='90' rx='6' fill='#D97706'/><rect x='84' y='426' width='14' height='90' fill='#D97706'/>
+  <text x='55' y='476' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='26' font-weight='700' fill='white'>04</text>
+  <text x='116' y='452' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#FCD34D'>Right to Reconsideration</text>
+  <text x='116' y='474' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>reconsideration_right = True — always, on every claim, regardless of score or denial reason. Legal right,</text>
+  <text x='116' y='496' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>not a prediction. Cannot be overridden by model version or configuration.</text>
+
+  <!-- Row 5 y=524 -->
+  <rect x='18' y='524' width='1164' height='90' rx='6' fill='#0D1117' stroke='#21262D' stroke-width='1'/>
+  <rect x='18' y='524' width='78' height='90' rx='6' fill='#3B82F6'/><rect x='84' y='524' width='14' height='90' fill='#3B82F6'/>
+  <text x='55' y='574' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='26' font-weight='700' fill='white'>05</text>
+  <text x='116' y='550' font-family='Segoe UI,system-ui,sans-serif' font-size='14' font-weight='700' fill='#93C5FD'>Plain Language Explanation</text>
+  <text x='116' y='572' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>provider_explanation: English sentence for billing specialists citing primary SHAP driver + % weight.</text>
+  <text x='116' y='594' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#C9D1D9'>Snowflake Cortex COMPLETE(llama3.1-70b) generates extended NL denial explanations in Gold.</text>
+<text x='600' y='646' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>7 Silver fields: denial_risk_score · ai_decision_only · human_review_required · reconsideration_right · provider_explanation · decision_basis · model_version</text>
+  <text x='600' y='690' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#FCD34D'>github.com/SelvaSubr/AI-ClaimOps360</text>
+</svg>

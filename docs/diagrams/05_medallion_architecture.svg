@@ -1,0 +1,103 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='670' viewBox='0 0 1200 670'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#0D1117'/><stop offset='100%' stop-color='#161B22'/></linearGradient>
+    <linearGradient id='hdr' x1='0' y1='0' x2='1' y2='0'><stop offset='0%' stop-color='#1A56DB'/><stop offset='100%' stop-color='#0E9F6E'/></linearGradient>
+  </defs>
+  <rect width='1200' height='670' fill='url(#bg)'/>
+  <rect x='0' y='0' width='1200' height='72' fill='url(#hdr)' opacity='0.95'/>
+  <text x='600' y='40' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='white'>Delta Lake Medallion Architecture — Write Semantics</text>
+  <text x='600' y='62' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='rgba(255,255,255,0.78)'>ADLS Gen2 · Delta Lake 3.0 ACID · Bronze → Silver → Gold · Z-ORDER optimized</text>
+
+  <!-- 3 columns: BRONZE x=15 w=368, SILVER x=401 w=368, GOLD x=787 w=398 h=518 y=84 -->
+  <!-- BRONZE -->
+  <rect x='15' y='84' width='368' height='500' rx='8' fill='#0D1117' stroke='#1A56DB' stroke-width='2'/>
+  <rect x='15' y='84' width='368' height='58' rx='8' fill='#1A56DB'/><rect x='15' y='128' width='368' height='14' fill='#1A56DB'/>
+  <text x='199' y='120' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='19' font-weight='700' fill='white' letter-spacing='1'>BRONZE</text>
+
+  <text x='33' y='164' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#58A6FF' letter-spacing='1'>WRITE MODE</text>
+  <text x='33' y='188' font-family='Segoe UI,system-ui,sans-serif' font-size='17' font-weight='700' fill='#E6EDF3'>APPEND ONLY</text>
+  <line x1='33' y1='202' x2='369' y2='202' stroke='#30363D' stroke-width='1'/>
+
+  <text x='33' y='228' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#58A6FF' letter-spacing='1'>PURPOSE</text>
+  <text x='33' y='252' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>Immutable replay archive</text>
+  <line x1='33' y1='268' x2='369' y2='268' stroke='#30363D' stroke-width='1'/>
+
+  <text x='33' y='294' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#58A6FF' letter-spacing='1'>SCHEMA</text>
+  <text x='33' y='318' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#8B949E'>claim_id · claim_json</text>
+  <text x='33' y='338' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#8B949E'>kafka_offset · source_topic</text>
+  <text x='33' y='358' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#8B949E'>ingest_ts · partition_date</text>
+  <line x1='33' y1='374' x2='369' y2='374' stroke='#30363D' stroke-width='1'/>
+
+  <text x='33' y='400' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#58A6FF' letter-spacing='1'>RATIONALE</text>
+  <text x='33' y='424' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>If Silver has a bug, replay</text>
+  <text x='33' y='444' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>from Bronze offset. Never</text>
+  <text x='33' y='464' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>overwrite raw data.</text>
+  <line x1='33' y1='480' x2='369' y2='480' stroke='#30363D' stroke-width='1'/>
+
+  <text x='33' y='506' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>claim_consumer.py</text>
+  <text x='33' y='528' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>ADLS Gen2: bronze/ container</text>
+
+  <!-- Arrow B→S y=343 -->
+  <line x1='383' y1='343' x2='399' y2='343' stroke='#0E9F6E' stroke-width='3'/><polygon points='399,337 413,343 399,349' fill='#0E9F6E'/>
+
+  <!-- SILVER -->
+  <rect x='413' y='84' width='368' height='500' rx='8' fill='#0D1117' stroke='#0E9F6E' stroke-width='2'/>
+  <rect x='413' y='84' width='368' height='58' rx='8' fill='#0E9F6E'/><rect x='413' y='128' width='368' height='14' fill='#0E9F6E'/>
+  <text x='597' y='120' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='19' font-weight='700' fill='white' letter-spacing='1'>SILVER</text>
+
+  <text x='431' y='164' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#6EE7B7' letter-spacing='1'>WRITE MODE</text>
+  <text x='431' y='188' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#E6EDF3'>MERGE INTO (Idempotent)</text>
+  <line x1='431' y1='202' x2='767' y2='202' stroke='#30363D' stroke-width='1'/>
+
+  <text x='431' y='228' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#6EE7B7' letter-spacing='1'>PURPOSE</text>
+  <text x='431' y='252' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>Typed · validated · AI-scored</text>
+  <line x1='431' y1='268' x2='767' y2='268' stroke='#30363D' stroke-width='1'/>
+
+  <text x='431' y='294' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#6EE7B7' letter-spacing='1'>SCHEMA</text>
+  <text x='431' y='318' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#8B949E'>13 base cols + 7 CMS AI fields</text>
+  <text x='431' y='338' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#A78BFA'>denial_risk_score · decision_basis</text>
+  <text x='431' y='358' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#A78BFA'>human_review_required · model_version</text>
+  <line x1='431' y1='374' x2='767' y2='374' stroke='#30363D' stroke-width='1'/>
+
+  <text x='431' y='400' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#6EE7B7' letter-spacing='1'>RATIONALE</text>
+  <text x='431' y='424' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>Run job twice → identical Silver.</text>
+  <text x='431' y='444' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>Exactly-once semantics.</text>
+  <text x='431' y='464' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>Z-ORDER by billing_npi+date.</text>
+  <line x1='431' y1='480' x2='767' y2='480' stroke='#30363D' stroke-width='1'/>
+
+  <text x='431' y='506' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>bronze_to_silver.py</text>
+
+  <!-- Arrow S→G y=343 -->
+  <line x1='781' y1='343' x2='797' y2='343' stroke='#D97706' stroke-width='3'/><polygon points='797,337 811,343 797,349' fill='#D97706'/>
+
+  <!-- GOLD -->
+  <rect x='811' y='84' width='374' height='500' rx='8' fill='#0D1117' stroke='#D97706' stroke-width='2'/>
+  <rect x='811' y='84' width='374' height='58' rx='8' fill='#D97706'/><rect x='811' y='128' width='374' height='14' fill='#D97706'/>
+  <text x='998' y='120' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='19' font-weight='700' fill='white' letter-spacing='1'>GOLD</text>
+
+  <text x='829' y='164' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#FCD34D' letter-spacing='1'>WRITE MODE</text>
+  <text x='829' y='188' font-family='Segoe UI,system-ui,sans-serif' font-size='16' font-weight='700' fill='#E6EDF3'>OVERWRITE (Rebuilt)</text>
+  <line x1='829' y1='202' x2='1171' y2='202' stroke='#30363D' stroke-width='1'/>
+
+  <text x='829' y='228' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#FCD34D' letter-spacing='1'>PURPOSE</text>
+  <text x='829' y='252' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#C9D1D9'>Aggregated · analytics-ready</text>
+  <line x1='829' y1='268' x2='1171' y2='268' stroke='#30363D' stroke-width='1'/>
+
+  <text x='829' y='294' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#FCD34D' letter-spacing='1'>TABLES</text>
+  <text x='829' y='318' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#8B949E'>claims_summary    (50 rows)</text>
+  <text x='829' y='338' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#8B949E'>provider_summary  (1/NPI)</text>
+  <text x='829' y='358' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#8B949E'>denial_summary    (by code)</text>
+  <text x='829' y='378' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#FCD34D'>remittance  (835 loop)</text>
+  <line x1='829' y1='396' x2='1171' y2='396' stroke='#30363D' stroke-width='1'/>
+
+  <text x='829' y='422' font-family='Segoe UI,system-ui,sans-serif' font-size='12' font-weight='700' fill='#FCD34D' letter-spacing='1'>RATIONALE</text>
+  <text x='829' y='446' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>Always derived from Silver.</text>
+  <text x='829' y='466' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>Never written to directly.</text>
+  <text x='829' y='486' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>dbt COPY INTO → Snowflake.</text>
+  <line x1='829' y1='502' x2='1171' y2='502' stroke='#30363D' stroke-width='1'/>
+
+  <text x='829' y='528' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>silver_to_gold.py</text>
+  <text x='829' y='548' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#8B949E'>load_gold_to_snowflake.py</text>
+
+  <text x='600' y='628' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#FCD34D'>github.com/SelvaSubr/AI-ClaimOps360</text>
+</svg>

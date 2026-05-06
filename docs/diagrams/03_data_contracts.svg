@@ -1,0 +1,101 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1300' height='760' viewBox='0 0 1300 760'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='#0D1117'/><stop offset='100%' stop-color='#161B22'/></linearGradient>
+    <linearGradient id='hdr' x1='0' y1='0' x2='1' y2='0'><stop offset='0%' stop-color='#1A56DB'/><stop offset='100%' stop-color='#0E9F6E'/></linearGradient>
+  </defs>
+  <rect width='1300' height='760' fill='url(#bg)'/>
+  <rect x='0' y='0' width='1300' height='72' fill='url(#hdr)' opacity='0.95'/>
+  <text x='650' y='40' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='20' font-weight='700' fill='white'>AI-ClaimOps360 — Data Contracts A through F</text>
+  <text x='650' y='62' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='rgba(255,255,255,0.78)'>Module-to-module interface map · schema-enforced at every boundary</text>
+
+  <!-- 6 contracts 2×3 col widths: A=394 B=394 C=430 gap=18 margin=16 -->
+  <!-- ROW 1 y=82 h=286 -->
+  <!-- A x=16 w=394 -->
+  <rect x='16' y='82' width='394' height='286' rx='8' fill='#0D1117' stroke='#1A56DB' stroke-width='1.5'/>
+  <rect x='16' y='82' width='394' height='46' rx='8' fill='#1A56DB'/><rect x='16' y='112' width='394' height='16' fill='#1A56DB'/>
+  <text x='213' y='108' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='white'>CONTRACT A</text>
+  <text x='32' y='144' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#79B8FF' font-style='italic'>edi_parser.py → fhir_mapper.py</text>
+  <line x1='32' y1='154' x2='394' y2='154' stroke='#30363D' stroke-width='1'/>
+  <text x='32' y='176' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· transaction_id</text>
+  <text x='32' y='198' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· billing_npi / rendering_npi</text>
+  <text x='32' y='220' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· patient_member_id</text>
+  <text x='32' y='242' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· date_of_service</text>
+  <text x='32' y='264' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· billed_amount</text>
+  <text x='32' y='286' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· diagnosis_codes[]</text>
+  <text x='32' y='350' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#6A737D'>Python dict · validated at parse time</text>
+
+  <!-- B x=428 w=394 -->
+  <rect x='428' y='82' width='394' height='286' rx='8' fill='#0D1117' stroke='#3B82F6' stroke-width='1.5'/>
+  <rect x='428' y='82' width='394' height='46' rx='8' fill='#3B82F6'/><rect x='428' y='112' width='394' height='16' fill='#3B82F6'/>
+  <text x='625' y='108' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='white'>CONTRACT B</text>
+  <text x='444' y='144' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#93C5FD' font-style='italic'>fhir_mapper.py → Kafka claims.raw</text>
+  <line x1='444' y1='154' x2='808' y2='154' stroke='#30363D' stroke-width='1'/>
+  <text x='444' y='176' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· resourceType: "Claim"</text>
+  <text x='444' y='198' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· id  (claim_id)</text>
+  <text x='444' y='220' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· patient.reference</text>
+  <text x='444' y='242' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· provider.identifier</text>
+  <text x='444' y='264' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· diagnosis[]  · item[]</text>
+  <text x='444' y='286' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· total.value</text>
+  <text x='444' y='350' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#6A737D'>FHIR R4 JSON · schema-validated</text>
+
+  <!-- C x=840 w=444 -->
+  <rect x='840' y='82' width='444' height='286' rx='8' fill='#0D1117' stroke='#0E9F6E' stroke-width='1.5'/>
+  <rect x='840' y='82' width='444' height='46' rx='8' fill='#0E9F6E'/><rect x='840' y='112' width='444' height='16' fill='#0E9F6E'/>
+  <text x='1062' y='108' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='white'>CONTRACT C</text>
+  <text x='856' y='144' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#6EE7B7' font-style='italic'>claim_consumer.py → Delta Bronze (APPEND)</text>
+  <line x1='856' y1='154' x2='1270' y2='154' stroke='#30363D' stroke-width='1'/>
+  <text x='856' y='176' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· claim_id  STRING NOT NULL</text>
+  <text x='856' y='198' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· claim_json  STRING NOT NULL</text>
+  <text x='856' y='220' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· kafka_offset  LONG NOT NULL</text>
+  <text x='856' y='242' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· source_topic  STRING</text>
+  <text x='856' y='264' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· ingest_ts  TIMESTAMP NOT NULL</text>
+  <text x='856' y='350' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#6A737D'>Delta APPEND ONLY · replay from Kafka offset</text>
+
+  <!-- ROW 2 y=388 h=310 -->
+  <!-- D+E x=16 w=394 -->
+  <rect x='16' y='388' width='394' height='310' rx='8' fill='#0D1117' stroke='#059669' stroke-width='1.5'/>
+  <rect x='16' y='388' width='394' height='46' rx='8' fill='#059669'/><rect x='16' y='418' width='394' height='16' fill='#059669'/>
+  <text x='213' y='414' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='white'>CONTRACT D + E</text>
+  <text x='32' y='450' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#6EE7B7' font-style='italic'>bronze_to_silver.py → Delta Silver (MERGE INTO)</text>
+  <line x1='32' y1='460' x2='394' y2='460' stroke='#30363D' stroke-width='1'/>
+  <text x='32' y='482' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· claim_id  PK  · billing_npi</text>
+  <text x='32' y='504' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· billed_amount  · date_of_service</text>
+  <text x='32' y='526' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#A78BFA'>· denial_risk_score  INT (0-100)</text>
+  <text x='32' y='548' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#A78BFA'>· human_review_required  BOOL</text>
+  <text x='32' y='570' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#A78BFA'>· ai_decision_only = FALSE</text>
+  <text x='32' y='592' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#A78BFA'>· reconsideration_right = TRUE</text>
+  <text x='32' y='614' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#A78BFA'>· provider_explanation  · model_version</text>
+  <text x='32' y='680' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#7C3AED'>← 7 CMS compliance fields (purple)</text>
+
+  <!-- E SHAP x=428 w=394 -->
+  <rect x='428' y='388' width='394' height='310' rx='8' fill='#0D1117' stroke='#7C3AED' stroke-width='1.5'/>
+  <rect x='428' y='388' width='394' height='46' rx='8' fill='#7C3AED'/><rect x='428' y='418' width='394' height='16' fill='#7C3AED'/>
+  <text x='625' y='414' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='white'>CONTRACT E — SHAP</text>
+  <text x='444' y='450' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#C4B5FD' font-style='italic'>explainability.py → Silver AI columns</text>
+  <line x1='444' y1='460' x2='808' y2='460' stroke='#30363D' stroke-width='1'/>
+  <text x='444' y='482' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· shap_billed_amount  FLOAT</text>
+  <text x='444' y='504' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· shap_has_prior_auth  FLOAT</text>
+  <text x='444' y='526' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· shap_diagnosis_count  FLOAT</text>
+  <text x='444' y='548' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· shap_member_eligible  FLOAT</text>
+  <text x='444' y='570' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· primary_driver  STRING</text>
+  <text x='444' y='592' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>· decision_basis  JSON</text>
+  <text x='444' y='626' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>SHAP TreeExplainer · EXACT values</text>
+  <text x='444' y='648' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#C4B5FD'>CMS Non-Discrimination in AI (2024)</text>
+
+  <!-- F x=840 w=444 -->
+  <rect x='840' y='388' width='444' height='310' rx='8' fill='#0D1117' stroke='#D97706' stroke-width='1.5'/>
+  <rect x='840' y='388' width='444' height='46' rx='8' fill='#D97706'/><rect x='840' y='418' width='444' height='16' fill='#D97706'/>
+  <text x='1062' y='414' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='15' font-weight='700' fill='white'>CONTRACT F</text>
+  <text x='856' y='450' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#FCD34D' font-style='italic'>silver_to_gold.py + dbt → Snowflake Gold</text>
+  <line x1='856' y1='460' x2='1270' y2='460' stroke='#30363D' stroke-width='1'/>
+  <text x='856' y='482' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>claims_summary  (50 rows)</text>
+  <text x='856' y='504' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>provider_summary  (1 row per NPI)</text>
+  <text x='856' y='526' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>denial_summary  (by reason code)</text>
+  <text x='856' y='548' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#C9D1D9'>remittance  (Gold/remittance/)</text>
+  <text x='856' y='570' font-family='JetBrains Mono,Consolas,monospace' font-size='12' fill='#FCD34D'>DENIAL_EXPLANATIONS  (Cortex LLM)</text>
+  <text x='856' y='614' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>Snowflake GOLD schema</text>
+  <text x='856' y='636' font-family='Segoe UI,system-ui,sans-serif' font-size='13' fill='#8B949E'>COPY INTO from ADLS Gen2 external stage</text>
+  <text x='856' y='658' font-family='Segoe UI,system-ui,sans-serif' font-size='12' fill='#29B5E8'>PHI never leaves Snowflake perimeter</text>
+
+  <text x='650' y='730' text-anchor='middle' font-family='Segoe UI,system-ui,sans-serif' font-size='14' fill='#FCD34D'>github.com/SelvaSubr/AI-ClaimOps360</text>
+</svg>

@@ -1,0 +1,155 @@
+{
+  "resourceType": "Bundle",
+  "id": "BUNDLE-MCK-20260101",
+  "type": "collection",
+  "timestamp": "2026-04-12T12:00:00Z",
+  "entry": [
+    {
+      "fullUrl": "Claim/CLM-MCK-20260101-001",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "CLM-MCK-20260101-001",
+        "status": "active",
+        "type": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/claim-type", "code": "professional"}]},
+        "use": "claim",
+        "patient": {"reference": "Patient/MCKMEMBR0001"},
+        "created": "2026-04-12",
+        "billablePeriod": {"start": "2026-01-01", "end": "2026-01-01"},
+        "insurer": {"identifier": {"value": "MCKPYR001"}},
+        "provider": {"identifier": {"system": "http://hl7.org/fhir/sid/us-npi", "value": "1234567893"}},
+        "priority": {"coding": [{"code": "normal"}]},
+        "diagnosis": [
+          {"sequence": 1, "diagnosisCodeableConcept": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "Z00.00"}]}}
+        ],
+        "item": [
+          {"sequence": 1,
+           "servicedDate": "2026-01-01",
+           "productOrService": {"coding": [{"system": "http://www.ama-assn.org/go/cpt", "code": "99213"}]},
+           "unitPrice": {"value": 350.0, "currency": "USD"}, "net": {"value": 350.0, "currency": "USD"}}
+        ],
+        "total": {"value": 350.0, "currency": "USD"},
+        "_denial_risk_score": null,
+        "_prior_auth": "AUTHMCK0001",
+        "_rendering_npi": "9990000099"
+      }
+    },
+    {
+      "fullUrl": "Claim/CLM-MCK-20260101-002",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "CLM-MCK-20260101-002",
+        "status": "active",
+        "type": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/claim-type", "code": "professional"}]},
+        "use": "claim",
+        "patient": {"reference": "Patient/MCKMEMBR0002"},
+        "created": "2026-04-12",
+        "billablePeriod": {"start": "2026-02-21", "end": "2026-02-21"},
+        "insurer": {"identifier": {"value": "MCKPYR001"}},
+        "provider": {"identifier": {"system": "http://hl7.org/fhir/sid/us-npi", "value": "1234567893"}},
+        "priority": {"coding": [{"code": "normal"}]},
+        "diagnosis": [
+          {"sequence": 1, "diagnosisCodeableConcept": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "M79.3"}]}},
+          {"sequence": 2, "diagnosisCodeableConcept": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "E11.9"}]}}
+        ],
+        "item": [
+          {"sequence": 1,
+           "servicedDate": "2026-02-21",
+           "productOrService": {"coding": [{"system": "http://www.ama-assn.org/go/cpt", "code": "99214"}]},
+           "unitPrice": {"value": 1200.0, "currency": "USD"}, "net": {"value": 1200.0, "currency": "USD"}}
+        ],
+        "total": {"value": 1200.0, "currency": "USD"},
+        "_denial_risk_score": null,
+        "_prior_auth": "EXPIRED-AUTH-MCK002",
+        "_rendering_npi": "9990000099"
+      }
+    },
+    {
+      "fullUrl": "Claim/CLM-MCK-20260101-003",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "CLM-MCK-20260101-003",
+        "status": "active",
+        "type": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/claim-type", "code": "professional"}]},
+        "use": "claim",
+        "patient": {"reference": "Patient/MCKMEMBR0003"},
+        "created": "2026-04-12",
+        "billablePeriod": {"start": "2026-03-10", "end": "2026-03-10"},
+        "insurer": {"identifier": {"value": "MCKPYR001"}},
+        "provider": {"identifier": {"system": "http://hl7.org/fhir/sid/us-npi", "value": "1234567893"}},
+        "priority": {"coding": [{"code": "stat"}]},
+        "diagnosis": [
+          {"sequence": 1, "diagnosisCodeableConcept": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "I21.09"}]}}
+        ],
+        "item": [
+          {"sequence": 1,
+           "servicedDate": "2026-03-10",
+           "productOrService": {"coding": [{"system": "http://www.ama-assn.org/go/cpt", "code": "93458"}]},
+           "unitPrice": {"value": 8500.0, "currency": "USD"}, "net": {"value": 8500.0, "currency": "USD"}}
+        ],
+        "total": {"value": 8500.0, "currency": "USD"},
+        "_denial_risk_score": null,
+        "_prior_auth": null,
+        "_rendering_npi": "9990000099"
+      }
+    },
+    {
+      "fullUrl": "Claim/CLM-MCK-20260101-004",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "CLM-MCK-20260101-004",
+        "status": "active",
+        "type": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/claim-type", "code": "professional"}]},
+        "use": "claim",
+        "patient": {"reference": "Patient/MCKMEMBR0004"},
+        "created": "2026-04-12",
+        "billablePeriod": {"start": "2026-03-28", "end": "2026-03-28"},
+        "insurer": {"identifier": {"value": "MCKPYR001"}},
+        "provider": {"identifier": {"system": "http://hl7.org/fhir/sid/us-npi", "value": "1234567893"}},
+        "priority": {"coding": [{"code": "normal"}]},
+        "diagnosis": [
+          {"sequence": 1, "diagnosisCodeableConcept": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "J06.9"}]}}
+        ],
+        "item": [
+          {"sequence": 1,
+           "servicedDate": "2026-03-28",
+           "productOrService": {"coding": [{"system": "http://www.ama-assn.org/go/cpt", "code": "99213"}]},
+           "unitPrice": {"value": 650.0, "currency": "USD"}, "net": {"value": 650.0, "currency": "USD"}}
+        ],
+        "total": {"value": 650.0, "currency": "USD"},
+        "_denial_risk_score": null,
+        "_prior_auth": "AUTHMCK0004",
+        "_rendering_npi": "9990000099"
+      }
+    },
+    {
+      "fullUrl": "Claim/CLM-MCK-20260101-005",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "CLM-MCK-20260101-005",
+        "status": "active",
+        "type": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/claim-type", "code": "professional"}]},
+        "use": "claim",
+        "patient": {"reference": "Patient/MCKMEMBR0005"},
+        "created": "2026-04-12",
+        "billablePeriod": {"start": "2026-02-21", "end": "2026-02-21"},
+        "insurer": {"identifier": {"value": "MCKPYR001"}},
+        "provider": {"identifier": {"system": "http://hl7.org/fhir/sid/us-npi", "value": "1234567893"}},
+        "priority": {"coding": [{"code": "normal"}]},
+        "diagnosis": [
+          {"sequence": 1, "diagnosisCodeableConcept": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "M54.5"}]}},
+          {"sequence": 2, "diagnosisCodeableConcept": {"coding": [{"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "M47.816"}]}}
+        ],
+        "item": [
+          {"sequence": 1,
+           "servicedDate": "2026-02-21",
+           "productOrService": {"coding": [{"system": "http://www.ama-assn.org/go/cpt", "code": "99213"}]},
+           "unitPrice": {"value": 950.0, "currency": "USD"}, "net": {"value": 950.0, "currency": "USD"}}
+        ],
+        "total": {"value": 950.0, "currency": "USD"},
+        "_denial_risk_score": null,
+        "_prior_auth": "PARTIAL-AUTH-MCK005",
+        "_rendering_npi": "9990000099"
+      }
+    }
+  ]
+}
